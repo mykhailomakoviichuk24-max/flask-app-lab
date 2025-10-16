@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="text-center mb-5">
+    <h1>Маковійчук Михайло</h1>
+    <p class="lead text-muted">QA Engineer | Web Developer</p>
+    <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" class="rounded-circle my-3" width="150" alt="Моє фото">
+</section>
+
+<section id="about" class="mb-4">
+    <h2>Про себе</h2>
+    <p>Я — мотивований спеціаліст, який прагне створювати якісні та надійні програмні продукти.</p>
+</section>
+
+<section id="education" class="mb-4">
+    <h2>Освіта</h2>
+    <p>Навчаюсь в Карпатському національному університеті імені Василя Стефаника.</p>
+</section>
+
+<section id="skills" class="mb-4">
+    <h2>Навички</h2>
+    <ul>
+        <li>Тестування веб та API</li>
+        <li>Автоматизація тестування (Selenium, PyTest)</li>
+        <li>Робота з Postman, SQL, Git</li>
+    </ul>
+</section>
+
+<section id="tech" class="mb-4">
+    <h2>Технології</h2>
+    <p>Python, Flask, HTML, CSS, Bootstrap, JavaScript.</p>
+</section>
+
+<section id="projects" class="mb-4">
+    <h2>Проєкти</h2>
+    <p>Брав участь у тестуванні навчальних проєктів, розроблених на Flask.</p>
+</section>
+{% endblock %}
