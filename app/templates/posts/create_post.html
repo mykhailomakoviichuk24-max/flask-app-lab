@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Створити новий пост</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    
+                    {{ macros.render_field(form.title) }}
+                    {{ macros.render_field(form.text) }}
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ macros.render_field(form.type) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ macros.render_field(form.author_id) }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.tags.label(class="form-label") }}
+                        {{ form.tags(class="form-select", size="4") }}
+                        <div class="form-text text-muted">Затисніть Ctrl (Windows) або Cmd (Mac), щоб обрати декілька.</div>
+                    </div>
+                    
+                    {{ macros.render_field(form.enabled) }}
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        {{ form.submit(class="btn btn-success btn-lg") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
