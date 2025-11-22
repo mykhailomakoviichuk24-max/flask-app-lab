@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Вхід</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    
+                    {{ macros.render_field(form.email) }}
+                    {{ macros.render_field(form.password) }}
+                    {{ macros.render_field(form.remember) }}
+                    
+                    <div class="d-grid gap-2 mt-3">
+                        {{ form.submit(class="btn btn-primary") }}
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <small>Ще не зареєстровані? <a href="{{ url_for('auth.register') }}">Реєстрація</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
