@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">{{ event.title }}</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">{{ event.description }}</p>
+                <hr>
+                <p><strong>Категорія:</strong> <span class="badge bg-secondary">{{ event.category.name }}</span></p>
+                <p><strong>Місце проведення:</strong> {{ event.location }}</p>
+                <p><strong>Дата та час:</strong> {{ event.date_time.strftime('%d.%m.%Y о %H:%M') }}</p>
+                <p class="small text-muted">Створено: {{ event.owner.username if event.owner else 'Невідомо' }}</p>
+            </div>
+            
+            {% if current_user.is_authenticated and current_user.id == event.owner_id %}
+            <div class="card-footer d-flex justify-content-end">
+                <a href="{{ url_for('sports.update_event', id=event.id) }}" class="btn btn-warning me-2">✏️ Редагувати</a>
+                
+                <form action="{{ url_for('sports.delete_event', id=event.id) }}" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Ви впевнені, що хочете видалити цю подію?')">🗑️ Видалити</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        <a href="{{ url_for('sports.event_list') }}" class="btn btn-link mt-3">← Назад до списку</a>
+    </div>
+</div>
+{% endblock %}
