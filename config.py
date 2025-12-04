@@ -1,2 +1,2 @@
-DEBUG = True
-TESTING = False
+
+SECRET_KEY = 'super-secret-key-12345'

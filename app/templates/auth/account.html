@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block content %}
+<div class="content-section">
+  
+  <div class="d-flex align-items-center mb-4">
+    
+    <img class="rounded-circle account-img me-3" src="{{ image_file }}" style="width: 125px; height: 125px; object-fit: cover;">
+    
+    <div>
+      <h2 class="account-heading">{{ current_user.username }}</h2>
+      <p class="text-secondary mb-1">{{ current_user.email }}</p>
+      
+      
+      {% if current_user.about_me %}
+        <p class="small text-dark">{{ current_user.about_me }}</p>
+      {% endif %}
+      
+      
+      {% if current_user.last_seen %}
+        <p class="text-muted small mb-0">
+            Останній візит: {{ current_user.last_seen.strftime('%Y-%m-%d %H:%M') }}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+
+  
+  <form method="POST" action="" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Налаштування акаунту</legend>
+          
+          
+          {{ macros.render_field(form.username) }}
+          {{ macros.render_field(form.email) }}
+          
+          
+          {{ macros.render_field(form.about_me) }}
+          
+          
+          <div class="mb-3">
+              {{ form.picture.label(class="form-label") }}
+              {{ form.picture(class="form-control") }}
+             
+              {% if form.picture.errors %}
+                  {% for error in form.picture.errors %}
+                      <span class="text-danger small d-block mt-1">{{ error }}</span>
+                  {% endfor %}
+              {% endif %}
+          </div>
+
+          <hr class="my-4">
+          
+          
+          <h5 class="mb-3 text-secondary">Зміна пароля</h5>
+          <div class="p-3 bg-light rounded border">
+              {{ macros.render_field(form.password) }}
+              {{ macros.render_field(form.confirm_password) }}
+          </div>
+
+      </fieldset>
+      
+      <div class="form-group mt-4">
+          {{ form.submit(class="btn btn-outline-info") }}
+      </div>
+  </form>
+</div>
+{% endblock %}

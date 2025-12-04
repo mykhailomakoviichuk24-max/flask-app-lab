@@ -1,3 +1,0 @@
-DEBUG = True
-TESTING = False
-FLASK_RUN_PORT=8080
